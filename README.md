@@ -4,14 +4,14 @@ This a Cocktail app using React native App utilizing the CockTail DB APi this a 
 
 This repo only contains the front end code. 
 
-#App Componets: 
+# App Componets: 
 React Native 
 Firebase 
 Node.js
 Cocktail DB API
 
-#current issues:
+# current issues:
 I am struggling to deploy this app, due to the nature of react native 
 
-#Snapshots 
+# Snapshots: 
 Snapshots of my app can be found on cocktail demo snapshot folder
