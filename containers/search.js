@@ -1,15 +1,14 @@
 import React, {Component} from 'react';
 import APIKey from '../APIKEYS/CocktailAPIKEY'; // grab the random api key from this file
-import {Text, View, TextInput, FlatList, StyleSheet} from 'react-native';
-import { useRoute, useNavigationState } from "@react-navigation/native"
-import RadioButton from '../components/UserIO/radioButton';
+import {View,  FlatList, StyleSheet} from 'react-native';
 import axios from 'axios';
 import * as RootNavigation from '../RootNavigation';
 import Fuse from "fuse.js";
 import allDrinksDB from '../APIStorage/APIstorage/categories.json'; 
-import {db } from '../APIKEYS/Firebase/firebase';
-let itemsRef = db.ref('/RAPID_API');
-let APIRef = null;
+import getEnvVars from '../environment';
+const { apiKey1} = getEnvVars();
+
+
 //require('dotenv').config()
 import {
   Button,
@@ -35,7 +34,7 @@ async function   onListItemClick(id) // async function
     "headers":{
     "content-type":"application/octet-stream",
     "x-rapidapi-host":"the-cocktail-db.p.rapidapi.com",
-    "x-rapidapi-key": APIRef //lookup API KEY 
+    "x-rapidapi-key": apiKey1 //lookup API KEY 
     },"params":{
     "i": +id
     }
@@ -63,14 +62,6 @@ class Search extends React.Component  {
   };
 
   componentDidMount() {
-    itemsRef.on('value', snapshot => {
-      let data = snapshot.val();
-      let items = Object.values(data);
-     // console.log("items");
-      //console.log(items.join(""));
-     // console.log("items end");
-      APIRef = items.join(""); 
-    });
   }
   updateSearch = (search) => {
     this.setState({search});
@@ -112,7 +103,7 @@ class Search extends React.Component  {
       "headers":{
       "content-type":"application/octet-stream",
       "x-rapidapi-host":"the-cocktail-db.p.rapidapi.com",
-      "x-rapidapi-key":APIRef // search API KEY 
+      "x-rapidapi-key": apiKey1 // search API KEY 
       },"params":{
       "i":search
       }
@@ -136,7 +127,7 @@ class Search extends React.Component  {
       method: 'GET',
       headers: {
         'x-rapidapi-host': 'the-cocktail-db.p.rapidapi.com',
-        'x-rapidapi-key': APIRef,
+        'x-rapidapi-key': apiKey1,
       },
     })
       .then((response) => response.json())
@@ -331,7 +322,7 @@ const styles = StyleSheet.create({
    {
     color: '#faf8f2',
     fontSize:18,
-    fontFamily:"Pattaya-Regular"
+
    },
 
   text: {

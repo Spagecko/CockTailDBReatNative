@@ -1,7 +1,7 @@
 // credit to expanded list view implementation  https://aboutreact.com/expandable-list-view/
 /*Example of Expandable ListView in React Native*/
 import React, { Component } from 'react';
-import {List,
+import {
   ListItem,
 } from 'react-native-elements';
 //import react in our project
@@ -28,12 +28,12 @@ const punchDB = require ('../APIStorage/APIstorage/PartyPunch.json');
 const otherDB = require('../APIStorage/APIstorage/Other.json'); 
 const sodaDB = require('../APIStorage/APIstorage/Soda.json');
 import * as RootNavigation from '../RootNavigation';
-import {db } from '../APIKEYS/Firebase/firebase';
-let itemsRef = db.ref('/RAPID_API');
-let APIRef = null;
+import getEnvVars from '../environment';
+const { apiKey1} = getEnvVars();
+
 //import basic react native components
 
-async function   onListItemClick(id, APIKey) // async function
+async function   onListItemClick(id, APIKey) // async function <-- might be useless
 {
   
   let myItem = null;
@@ -43,7 +43,7 @@ async function   onListItemClick(id, APIKey) // async function
     "headers":{
     "content-type":"application/octet-stream",
     "x-rapidapi-host":"the-cocktail-db.p.rapidapi.com",
-    "x-rapidapi-key": APIRef
+    "x-rapidapi-key":  APIKey
     },"params":{
     "i": +id
     }
@@ -68,14 +68,7 @@ class ExpandableItemComponent extends Component {
     };
   }
   componentDidMount() {
-    itemsRef.on('value', snapshot => {
-      let data = snapshot.val();
-      let items = Object.values(data);
-     // console.log("items");
-      //console.log(items.join(""));
-     // console.log("items end");
-      APIRef = items.join(""); 
-    });
+
   }
   UNSAFE_componentWillReceiveProps(nextProps) { // fix this later 
     if (nextProps.item.isExpanded) {
@@ -108,7 +101,7 @@ class ExpandableItemComponent extends Component {
     key={item.strDrink}
     title={item.strDrink}
     subtitle={item.idDrink}
-    onPress={onListItemClick.bind( this, item.idDrink , APIRef)} // navagates to details page 
+    onPress={onListItemClick.bind( this, item.idDrink , apiKey1)} // navagates to details page 
   />
   )
 
@@ -200,7 +193,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '500',
     color: '#fff',
-    fontFamily:"Pattaya-Regular"
+  
   },
 
   flatListBackground:
@@ -220,7 +213,7 @@ const styles = StyleSheet.create({
   {
     fontSize:18,
    color: '#faf8f2',
-   fontFamily:"Pattaya-Regular"
+  
   },
   listItem:
    {
