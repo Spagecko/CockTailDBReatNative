@@ -14,7 +14,7 @@ This repo only contains the front end code.
 
 #  issues:
  - Rearranging backend setup to accomadate new the new Expo setup.
- -  UI/UX is not opitimize for the search page. Components need to  be rearranged and resize before deployment  
+ -  UI/UX is not opitimize on the search page. Components need to  be rearranged and resize before deployment  
  - Exploring if I should deploy a react native web on Github pages despite the bugs that are in the website build 
 
 # Snapshots: 
