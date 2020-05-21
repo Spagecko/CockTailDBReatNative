@@ -21,5 +21,5 @@ This repo only contains the front end code.
 Snapshots of my app can be found on cocktail demo snapshot folder
 
 # Resloved 
-~~I am struggling to deploy this app, due to the nature of react native
+~~ I am struggling to deploy this app, due to the nature of react native ~~
 
