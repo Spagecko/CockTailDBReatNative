@@ -1,35 +1,25 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
-import { Text, View ,StyleSheet } from 'react-native';
-import TestPage from './components/Display/TestPage';
-import Navbar from './containers/navBar'
-import testPage from './components/Display/TestPage';
-import 'react-native-gesture-handler';
+import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer, DarkTheme} from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import { navigationRef } from './RootNavigation';
+import { createStackNavigator } from '@react-navigation/stack';
+import Navbar from './containers/navBar';
 import Details from './components/Display/Details';
-//require('dotenv').config();
-const Stack = createStackNavigator();
+import loginPage from './containers/loginPage';
+import RegisterPage from './containers/loginPage';
+const Stack = createStackNavigator(); 
+export default function App() {
 
-const App =() => {
   return (
 
-    <NavigationContainer theme = {DarkTheme} ref={navigationRef} >
-      <Stack.Navigator>
-        <Stack.Screen style = {styles.background} name="SuperCocktail" component={Navbar} 
+    <NavigationContainer theme = {DarkTheme} ref={navigationRef} > 
+     <Stack.Navigator>
+     <Stack.Screen style = {styles.background} name="SuperCocktail" component={Navbar} 
          options={{
           title: 'Super Cocktail App ',
           headerStyle: {
             backgroundColor: '#24292D',
-            fontFamily:"Pattaya-Regular"
+          
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -42,19 +32,45 @@ const App =() => {
             title: 'Details Page',
             headerStyle: {
               backgroundColor: '#24292D',
-              fontFamily:"Pattaya-Regular"
+            
             },
             headerTintColor: '#fff',
             headerTitleStyle: {
               fontWeight: 'bold',
             },
           }}/>
-        </Stack.Navigator>
+          <Stack.Screen name="Login" component={loginPage}
+          options={{
+            title: 'Login Page',
+            headerStyle: {
+              backgroundColor: '#24292D',
+            
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}/>
+          <Stack.Screen name="Register" component={RegisterPage}
+          options={{
+            title: 'Register Page',
+            headerStyle: {
+              backgroundColor: '#24292D',
+            
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}/>
+
+
+     </Stack.Navigator>
     </NavigationContainer>
-    
-  
   );
-};
+}
+
+
 const styles = StyleSheet.create({ 
   background:
   {
@@ -63,4 +79,4 @@ const styles = StyleSheet.create({
 
   }
 })
-export default App;
+
