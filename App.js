@@ -6,10 +6,19 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Navbar from './containers/navBar';
 import Details from './components/Display/Details';
 import loginPage from './containers/loginPage';
-import RegisterPage from './containers/loginPage';
+import RegisterPage from './containers/Register';
 const Stack = createStackNavigator(); 
-export default function App() {
+import * as firebase from "firebase";
+import Config from "./APIKEYS/Firebase/firebase"; 
 
+firebase.initializeApp(Config);
+
+export default  class App extends  React.Component {
+
+  state = { 
+    isLoggedIn : false 
+  }
+  render() {
   return (
 
     <NavigationContainer theme = {DarkTheme} ref={navigationRef} > 
@@ -68,6 +77,7 @@ export default function App() {
      </Stack.Navigator>
     </NavigationContainer>
   );
+        }
 }
 
 
