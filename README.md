@@ -11,6 +11,7 @@ This repo only contains the front end code.
 - Firebase 
 - Node.js
 - Cocktail DB API
+- Redux
 
 #  issues:
  - Rearranging backend setup to accomadate new the new Expo setup.
@@ -18,6 +19,8 @@ This repo only contains the front end code.
  - Exploring if I should deploy a react native web on Github pages despite the bugs that are in the website build 
  -  The 3 tab navagation  does mot respond to taping to the tabs 
  - need to add CSS varaibles to enable light or dark mode options 
+ - adding Redux for seemless auth mangement 
+ 
 
 # Snapshots: 
 Snapshots of my app can be found on cocktail demo snapshot folder
