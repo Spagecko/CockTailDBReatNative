@@ -8,10 +8,12 @@ import Details from './components/Display/Details';
 import loginPage from './containers/loginPage';
 import RegisterPage from './containers/Register';
 const Stack = createStackNavigator(); 
-import * as firebase from "firebase";
-import Config from "./APIKEYS/Firebase/firebase"; 
-
-firebase.initializeApp(Config);
+import { createStore, applyMiddleware } from 'redux'; 
+import rootReducer from './redux/reducers/rootReducer'; 
+import thunk from 'redux-thunk'; 
+import {Provider} from 'react-redux';
+import {getFiretore} from  'redux-firestore'; 
+import {gerFirebase} from 'react-redux-firebase';
 
 export default  class App extends  React.Component {
 
@@ -19,9 +21,11 @@ export default  class App extends  React.Component {
     isLoggedIn : false 
   }
   render() {
+    const store = createStore(rootReducer,  applyMiddleware(thunk.withExtraArgument({getFirebase, getFiretore}))); 
   return (
 
-    <NavigationContainer theme = {DarkTheme} ref={navigationRef} > 
+    <Provider store = {store}>
+      <NavigationContainer theme = {DarkTheme} ref={navigationRef} > 
      <Stack.Navigator>
      <Stack.Screen style = {styles.background} name="SuperCocktail" component={Navbar} 
          options={{
@@ -76,6 +80,7 @@ export default  class App extends  React.Component {
 
      </Stack.Navigator>
     </NavigationContainer>
+    </Provider>
   );
         }
 }
